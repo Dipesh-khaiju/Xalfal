@@ -14,14 +14,14 @@ import mongoConnect from "./db/conn.js";
 const port = process.env.PORT || 3000;
 
 dotenv.config();
+app.use(cors({
+    origin: 'https://xalfal-app.vercel.app',
+    credentials: true  // Include credentials (cookies, authorization headers, etc.) in the CORS request
+  })); // Use cors middleware to allow requests from all origins
 
 //middlewares
 app.use(express.json()); // to parse incoming req from req.body
 app.use(cookieParser()); // to access the cookies
-app.use(cors({
-    origin: 'https://xalfal-app.vercel.app/login',
-    credentials: true  // Include credentials (cookies, authorization headers, etc.) in the CORS request
-  })); // Use cors middleware to allow requests from all origins
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
