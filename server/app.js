@@ -8,7 +8,7 @@ import authRoutes from "./routes/authRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 
-
+// https://xalfal-app.onrender.com hosted backend url
 import mongoConnect from "./db/conn.js";
 
 
