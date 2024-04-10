@@ -19,7 +19,7 @@ dotenv.config();
 app.use(express.json()); // to parse incoming req from req.body
 app.use(cookieParser()); // to access the cookies
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://xalfal-app.vercel.app/login',
     credentials: true  // Include credentials (cookies, authorization headers, etc.) in the CORS request
   })); // Use cors middleware to allow requests from all origins
 
