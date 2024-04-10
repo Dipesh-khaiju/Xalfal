@@ -18,7 +18,10 @@ dotenv.config();
 //middlewares
 app.use(express.json()); // to parse incoming req from req.body
 app.use(cookieParser()); // to access the cookies
-app.use(cors()); // Use cors middleware to allow requests from all origins
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true  // Include credentials (cookies, authorization headers, etc.) in the CORS request
+  })); // Use cors middleware to allow requests from all origins
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
