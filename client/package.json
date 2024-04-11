@@ -20,6 +20,7 @@
     "react-loading-skeleton": "^3.4.0",
     "react-responsive": "^10.0.0",
     "react-router-dom": "^6.22.3",
+    "server": "file:../server",
     "socket.io-client": "^4.7.5",
     "zustand": "^4.5.2"
   },
