@@ -10,7 +10,7 @@ const useLogout = () => {
     const logout = async () => {
         setLoading(true);
         try {
-            const res = await axios.post("https://xalfal-app.onrender.com/api/auth/logout", {
+            const res = await axios.post("/api/auth/logout", {
                 headers: { "Content-Type": "application/json" }
             });
 
