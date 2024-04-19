@@ -2,6 +2,8 @@ import {Server} from "socket.io"
 import http from "http";
 import express from "express";
 import cors from "cors";
+import Message from "../models/messageModel.js";
+import Conversation from "../models/conversationModel.js"
 
 const app =express();
 
@@ -27,7 +29,29 @@ io.on('connection',(socket)=>{
     }
 
         //io.emit() is used to send event to all connected clients
-        io.emit("getOnlineUsers",Object.keys(userSocketMap))
+        io.emit("getOnlineUsers",Object.keys(userSocketMap));
+
+        //seen functionality
+      // Backend logic to mark messages as seen
+socket.on("markMessageAsSeen", async ({ conversationId, sentId }) => {
+    console.log("Received markMessageAsSeen event:", { conversationId, sentId });
+    try {
+      console.log("Marking messages as seen for conversationId:", conversationId);
+      console.log("userId:", sentId);
+  
+      const result = await Message.updateMany(
+        {  receiverId: sentId, seen: false },
+        { seen: true }
+      );
+  
+      console.log("Update result:", result);
+  
+      io.to(userSocketMap[sentId]).emit("messagesSeen", { conversationId });
+    } catch (err) {
+      console.error("Error updating messages:", err);
+    }
+  });
+  
 
     //socket.on() is use d to listen to events and it can be used both on serevr and client side
     socket.on('disconnect',()=>{

@@ -11,7 +11,11 @@ const ConvoSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         required:true,
         default:[],
-    }]
+    }],
+    seen:{
+        type:Boolean,
+        default:false
+    }
 },{timestamps:true}); // timestamps fives created at and updated at
 
 const Conversation = new mongoose.model("Conversation",ConvoSchema);
